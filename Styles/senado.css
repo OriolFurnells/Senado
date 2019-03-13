@@ -1,12 +1,31 @@
-body { 
-padding-bottom: 5em; 
+[v-cloak] {display: none}
+
+body {
+    padding-bottom: 5em;
 }
 
 tbody tr:hover {
-  background: #ff4d4d !important;  
-    color:white;
+    background: #ff4d4d !important;
+    color: white;
 }
 
+.navbar, li {
+	background: blue !important;
+
+}
+.nav a{
+	color: white !important;	
+}
+
+.navbar a:hover {
+    background: #0495FF !important;
+    color: white;
+    }
+
+.active{
+	background: red !important;
+
+}
 .expand {
     color: blue;
     text-decoration: underline blue;
@@ -23,55 +42,201 @@ table a {
 }
 
 
-.logo{
-    width: 25%;
-    height: 25%;
+.logo {
+	display:flex;
+    width: 275px;
+    height: 160px;
     margin-bottom: 2em;
+    margin-top: 2em;
+	 align-content: flex-start;
 }
 
-.justify{
+.logo2 {
+	display: flex;
+	 align-content: flex-end;
+	width: 30%;
+    height: 160px;
+    margin-top: 2em;
+    margin-bottom: 2em;
+	
+}
+
+.justify {
     text-align: justify;
 }
 
-footer{
+footer {
     background: dimgray;
     text-align: center;
-    color:white;
+    color: white;
     margin-top: 6em;
 }
 
 
-.predef{
+.predef {
     font-style: italic;
     color: dimgray;
-    padding-right:3em;
+    padding-right: 3em;
 }
 
-.opciones{
-    display:flex;
-    align-content: space-between;
+.opciones {
+    display: flex;
+     justify-content: space-between;
 }
 
-.check{
-    width:60%;
-    
-    justify-content:    space-between;
+.check {
+/*    justify-content: space-between;*/
+margin-left:1.5em;
 }
 
+/*
 .derecha {
-    width: 30%;
-    flex:right;
-    
+    flex: right;
+
 }
-td:first-child{
+*/
+
+td:first-child {
     width: 340px;
-    
-}
-.mini td:first-child{
-    width: 50%;
+
 }
 
-.mini{
-    width: 40% !important;
-    
+
+.filtros td:first-child {
+    width: 200px;
+    text-align: left;
+}
+
+.filtros td {
+    width: 50px;
+    text-align: center;
+}
+.filtros th {
+    text-align: center;
+    vertical-align:middle !important;
+}
+
+.filtros {
+    width: 100% !important;
+    text-align:   center !important;
+
+}
+
+.mini td:first-child {
+    width: 200px;
+    text-align: left;
+}
+
+.mini td {
+    width: 50px;
+    text-align: center;
+}
+.mini th {
+    text-align: center;
+    vertical-align:middle !important;
+}
+
+.mini {
+    width: 100% !important;
+    text-align:   center !important;
+
+}
+
+.negrita {
+    font-weight: bold;
+}
+
+.padre {
+    display: flex;
+    justify-content: space-between;
+}
+
+.son_right {
+    align-content: flex-end;
+    flex-grow: 1;
+    padding-left: 1em;
+    width: 45%;
+}
+
+.son_left {
+    align-content: flex-start;
+    flex-grow: 1;
+    width: 45%;
+    padding-right: 1em;
+}
+
+.son_top {
+    align-content: flex-end;
+    width: 40%;
+    text-align:  center;
+    align-items: center;
+}
+
+.texto {
+    width: 55%;
+    text-align: justify;
+}
+
+.son_top h2{
+   text-align: right;
+}
+
+.border_top{
+    border-top: 2px solid red;
+}
+
+/*-------------------------- LOADER ---------------------------------*/
+.spinner {
+  position: relative;
+  margin: auto;
+  box-sizing: border-box;
+  background-clip: padding-box;
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  -webkit-mask: linear-gradient(rgba(0, 0, 0, 0.1), #000000 90%);
+  transform-origin: 50% 60%;
+  transform: perspective(200px) rotateX(66deg);
+  animation: spinner-wiggle 1.2s infinite;
+}
+.spinner:before,
+.spinner:after {
+  content: "";
+  position: absolute;
+  margin: -4px;
+  box-sizing: inherit;
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  opacity: .05;
+  border: inherit;
+  border-color: transparent;
+  animation: spinner-spin 1.2s cubic-bezier(0.6, 0.2, 0, 0.8) infinite, spinner-fade 1.2s linear infinite;
+}
+
+.spinner:before {
+  border-top-color: blue;
+}
+
+.spinner:after {
+  border-top-color: red;
+  animation-delay: 0.3s;
+}
+
+@keyframes spinner-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner-fade {
+  20% {
+    opacity: .1;
+  }
+  40% {
+    opacity: 1;
+  }
+  60% {
+    opacity: .1;
+  }
 }

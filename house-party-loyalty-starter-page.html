@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+	<link rel="stylesheet" type="text/css" href="Styles/senado.css">
+</head>
+
+<body class="container table-responsive">
+	<input id="nombre_pagina" type="hidden" value="Loyal" />
+	<input id="chamber" type="hidden" value="Senate" />
+
+	<header>
+		<div class="padre">
+			<a href="index.html"> <img src="logo.png" class="logo" alt="Logo TGIF"></a>
+			<img src="usa-flag.gif" class="logo2" alt="USA FLAG MOVE GIF">
+		</div>
+
+
+
+		<nav id="menu" class="navbar navbar-default">
+			<div>
+				<ul class="nav navbar-nav">
+					<li><a href="index.html">Home</a></li>
+					<li>
+						<a href="#" data-toggle="dropdown">Congress 113
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="senate-data.html">Senate</a></li>
+							<li><a href="house-data.html">House</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#" data-toggle="dropdown">Attendance
+							<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="senate-attendance-starter-page.html">Senate</a></li>
+							<li><a href="house-attendance-starter-page.html">House</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#" data-toggle="dropdown" class="active">Party Loyalty <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="senate-party-loyalty-starter-page.html">Senate</a></li>
+							<li><a href="house-party-loyalty-starter-page.html" class="active">House</a></li>
+						</ul>
+					</li>
+
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+	<div id="app" v-cloak>
+
+		<div class="padre">
+			<div class="texto">
+				<h2>Party Loyalty</h2>
+				<p>Those who consider themselves to be strong partisans, strong Democrats and strong Republicans respectively, tend to be the most faithful in voting for their party's nominee for office and legislation that backs their party's agenda. </p>
+			</div>
+			<div class=son_top>
+				<h2>House at a glance</h2>
+				<table class="table mini">
+					<thead>
+						<tr>
+							<th>Party</th>
+							<th>Number of Reps</th>
+							<th>% Voted with Prty</th>
+						</tr>
+					</thead>
+					<tbody v-show="!loader">
+						<tr>
+							<td>Republican</td>
+							<td>{{ numberR }}</td>
+							<td>{{ mediaVwPR }}</td>
+						</tr>
+						<tr>
+							<td>Democrat</td>
+							<td>{{ numberD }} </td>
+							<td>{{ mediaVwPD }}</td>
+						</tr>
+						<tr>
+							<td hidden>Independent</td>
+							<td hidden>{{ numberI }}</td>
+							<td hidden>{{ mediaVwPI}}</td>
+						</tr>
+						<tr class="negrita">
+							<td>Total</td>
+							<td>{{numberR + numberD + numberI}} </td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+				<div v-show="loader" class="spinner"></div>
+			</div>
+		</div>
+		<div class="padre border_top">
+
+			<div class="son_left">
+				<h2>Least Loyal (Bottom 10% of Party)</h2>
+				<table class="table mini table-condensed table-striped margin">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Number Party Votes</th>
+							<th>% Party Votes</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="member in masVotosPerdidos">
+							<td v-if="member.middle_name !== null">
+								<a :href="member.url" target=”_blank”>
+									{{member.first_name +" "+ member.middle_name + " " + member.last_name}}
+								</a>
+							</td>
+
+							<td v-if="member.middle_name == null">
+								<a :href="member.url" target=”_blank”> {{member.first_name + " " + member.last_name}}</a></td>
+							<td>{{member.total_votes}}</td>
+							<td>{{member.votes_with_party_pct}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<div v-show="loader" class="spinner"></div>
+			</div>
+			<div class="son_right">
+				<h2>Most Loyal (Top 10% of Party)</h2>
+				<table class="table mini table-condensed table-striped margin">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Number Party Votes</th>
+							<th>% Party Votes</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="member in menosVotosPerdidos">
+
+
+							<td v-if="member.middle_name !== null">
+								<a :href="member.url" target=”_blank”>
+									{{member.first_name +" "+ member.middle_name + " " + member.last_name}}
+								</a>
+							</td>
+
+							<td v-if="member.middle_name == null">
+								<a :href="member.url" target=”_blank”> {{member.first_name + " " + member.last_name}}</a></td>
+							<td>{{member.total_votes}}</td>
+							<td>{{member.votes_with_party_pct}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<div v-show="loader" class="spinner"></div>
+			</div>
+		</div>
+	</div>
+
+	
+	<script src="JS/app-stadistics.js"></script>
+</body>
+<footer>
+	<p> 2019 TGIF | All rights reserved</p>
+</footer>
+
+
+</html>
